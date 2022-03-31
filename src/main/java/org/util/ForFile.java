@@ -13,7 +13,6 @@ public class ForFile {
 
 
     public static boolean createFile(String filename, String filecontent) {
-        Boolean b = false;
         filenameTemp = path + filename + ".html";
         File file = new File(filenameTemp);
         try {
@@ -22,14 +21,17 @@ public class ForFile {
                     file.getParentFile().mkdirs();
                 }
                 file.createNewFile();
-                b = true;
                 System.out.println("success create file,the file is " + filenameTemp);
                 writreFileContent(filenameTemp, filecontent);
+                return true;
+            } else {
+                writreFileContent(filenameTemp, filecontent);
+                return true;
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
-        return b;
     }
 
 
